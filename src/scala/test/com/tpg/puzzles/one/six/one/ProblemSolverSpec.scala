@@ -1,8 +1,8 @@
-package com.tpg.puzzles.one.six
+package com.tpg.puzzles.one.six.one
 
 import org.scalatest._
-import flatspec._
-import matchers._
+import org.scalatest.flatspec._
+import org.scalatest.matchers._
 
 class ProblemSolverSpec extends AnyFlatSpec with should.Matchers {
   val problemSolver = new ProblemSolver()

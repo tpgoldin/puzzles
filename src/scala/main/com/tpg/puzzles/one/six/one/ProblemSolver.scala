@@ -1,8 +1,6 @@
-package com.tpg.puzzles.one.six
+package com.tpg.puzzles.one.six.one
 
-import com.tpg.puzzles.one.six.ProblemSolver.DELIMITER
-
-import scala.io.StdIn
+import com.tpg.puzzles.one.six.one.ProblemSolver.DELIMITER
 
 class ProblemSolver {
   def readInput(input: String): Tuple2[Int, Int] = {
