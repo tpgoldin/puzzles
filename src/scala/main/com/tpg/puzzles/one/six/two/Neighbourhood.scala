@@ -1,6 +1,6 @@
 package com.tpg.puzzles.one.six.two
 
-class Neighbourhood(grid: Tuple2[Int, Int], r: Int, c: Int) {
+case class Neighbourhood(grid: Tuple2[Int, Int], r: Int, c: Int) {
   private val m = grid._1
   private val n = grid._2
 
