@@ -18,7 +18,7 @@ lazy val puzzlesTests = project in file("puzzles/src/scala/test")
 lazy val root = (project in file("."))
   .settings(
     // set the name of the project
-    name := "",
+    name := "Poker Hands Ranking",
 
     Compile / scalaSource := baseDirectory.value / "src/scala/main",
 
