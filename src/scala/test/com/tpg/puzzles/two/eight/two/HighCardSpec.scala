@@ -29,4 +29,22 @@ class HighCardSpec extends AnyFlatSpec with should.Matchers {
 
     highCard.rank(value) should be < 0
   }
+
+  "High hand" should "rank lower than a flush hand" in {
+    val value = Flush(Seq())
+
+    highCard.rank(value) should be < 0
+  }
+
+  "High hand" should "rank lower than a full house hand" in {
+    val value = FullHouse(Seq())
+
+    highCard.rank(value) should be < 0
+  }
+
+  "High hand" should "rank lower than a four of a kind hand" in {
+    val value = FourOfAKind(Seq())
+
+    highCard.rank(value) should be < 0
+  }
 }
