@@ -11,5 +11,5 @@ class Pair(override val cards: Seq[Card]) extends PokerHand(PairType, cards) wit
 }
 
 object Pair {
-  def apply(cards: Seq[Card]): Pair = new Pair(cards)
+  def apply(cards: Seq[Card]) : Pair = new Pair(cards)
 }

@@ -10,5 +10,5 @@ class FullHouse(override val cards: Seq[Card]) extends PokerHand(FullHouseType, 
 }
 
 object FullHouse {
-  def apply(cards: Seq[Card]) = new FullHouse(cards)
+  def apply(cards: Seq[Card]) : FullHouse = new FullHouse(cards)
 }

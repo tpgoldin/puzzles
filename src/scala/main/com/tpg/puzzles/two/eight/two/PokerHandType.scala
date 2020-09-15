@@ -10,4 +10,6 @@ object PokerHandType {
   object StraightType extends PokerHandType(11)
   object FlushType extends PokerHandType(13)
   object FullHouseType extends PokerHandType(17)
+  object FourOfAKindType extends PokerHandType(19)
+  object StraightFlushType extends PokerHandType(23)
 }
