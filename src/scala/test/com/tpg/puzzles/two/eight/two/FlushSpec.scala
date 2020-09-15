@@ -12,6 +12,12 @@ class FlushSpec extends AnyFlatSpec with should.Matchers {
     flush.rank(value) should be > 0
   }
 
+  "Flush hand" should "rank higher than a pair hand" in {
+    val value = Pair(Seq())
+
+    flush.rank(value) should be > 0
+  }
+
   "Flush hand" should "rank higher than a two pairs hand" in {
     val value = TwoPairs(Seq())
 
