@@ -47,4 +47,10 @@ class HighCardSpec extends AnyFlatSpec with should.Matchers {
 
     highCard.rank(value) should be < 0
   }
+
+  "High hand" should "rank lower than a straight flush hand" in {
+    val value = StraightFlush(Seq())
+
+    highCard.rank(value) should be < 0
+  }
 }
