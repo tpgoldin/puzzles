@@ -10,7 +10,7 @@ class ThreeOfAKindSpec extends PokerHandSpec {
     ThreeOfAKind(Seq()) shouldBe None
   }
 
-  "it" should "consist of  three cards in the hand having the same value" in {
+  "it" should "consist of three cards in the hand having the same value" in {
     val groupBy = aThreeOfAKind.cards.groupBy(_.value)
 
     val aList = groupBy.map(_._2.size).toList
@@ -31,9 +31,7 @@ class ThreeOfAKindSpec extends PokerHandSpec {
   }
 
   "it" should "rank higher than a two pairs hand" in {
-    val value = TwoPairs(Seq())
-
-    aThreeOfAKind.rank(value) should be > 0
+    aThreeOfAKind.rank(aTwoPairs) should be > 0
   }
 
   "it" should "rank lower than a straight card hand" in {
