@@ -18,4 +18,10 @@ class PokerHandSpec extends AnyFlatSpec with should.Matchers {
   val aFlush = Flush(Seq(("Two", 2), ("Five", 5), ("Six", 6), ("Eight", 8), ("Jack", 11)).map(i => Card(Diamonds, i._1, i._2))).head
 
   val aStraight = Straight(Seq(Card(Diamonds, "Two", 2), Card(Hearts, "Three", 3), Card(Hearts, "Four", 4), Card(Clubs, "Five", 5), Card(Clubs, "Six", 6))).head
+
+  val aThreeOfAKind = ThreeOfAKind(Seq(Hearts, Diamonds, Clubs).map(Card(_, "Five", 5)) ++
+    Seq(Card(Hearts, "Seven", 7), Card(Diamonds, "Nine", 9))).head
+
+  val aTwoPairs = TwoPairs(Seq(Hearts, Diamonds).map(Card(_, "Two", 2)) ++ Seq(Clubs, Diamonds).map(Card(_, "Seven", 7)) ++
+    Seq(Card(Hearts, "Queen", 12))).head
 }

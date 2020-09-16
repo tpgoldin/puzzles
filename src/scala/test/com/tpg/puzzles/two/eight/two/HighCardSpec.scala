@@ -10,15 +10,11 @@ class HighCardSpec extends PokerHandSpec {
   }
 
   "High hand" should "rank lower than a two pair hand" in {
-    val value = TwoPairs(Seq())
-
-    highCard.rank(value) should be < 0
+    highCard.rank(aTwoPairs) should be < 0
   }
 
   "High hand" should "rank lower than a three of a kind hand" in {
-    val value = ThreeOfAKind(Seq())
-
-    highCard.rank(value) should be < 0
+    highCard.rank(aThreeOfAKind) should be < 0
   }
 
   "High hand" should "rank lower than a straight hand" in {

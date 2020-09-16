@@ -33,15 +33,11 @@ class FlushSpec extends PokerHandSpec {
   }
 
   "it" should "rank higher than a two pairs hand" in {
-    val value = TwoPairs(Seq())
-
-    aFlush.rank(value) should be > 0
+    aFlush.rank(aTwoPairs) should be > 0
   }
 
   "it" should "rank higher than a three of a kind hand" in {
-    val value = ThreeOfAKind(Seq())
-
-    aFlush.rank(value) should be > 0
+    aFlush.rank(aThreeOfAKind) should be > 0
   }
 
   "it" should "rank higher than a straight hand" in {

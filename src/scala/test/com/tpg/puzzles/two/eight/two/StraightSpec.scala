@@ -42,9 +42,7 @@ class StraightSpec extends PokerHandSpec {
   }
 
   "it" should "rank higher than a three of a kind hand" in {
-    val value = ThreeOfAKind(Seq())
-
-    aStraight.rank(value) should be > 0
+    aStraight.rank(aThreeOfAKind) should be > 0
   }
   
   "it" should "rank lower than a flush card hand" in {

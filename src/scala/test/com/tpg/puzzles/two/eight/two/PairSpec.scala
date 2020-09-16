@@ -10,15 +10,11 @@ class PairSpec extends PokerHandSpec {
   }
 
   "it" should "rank lower than a two pairs hand" in {
-    val value = TwoPairs(Seq())
-
-    pair.rank(value) should be < 0
+    pair.rank(aTwoPairs) should be < 0
   }
 
   "it" should "rank lower than a three of a kind hand" in {
-    val value = ThreeOfAKind(Seq())
-
-    pair.rank(value) should be < 0
+    pair.rank(aThreeOfAKind) should be < 0
   }
 
   "it" should "rank lower than a straight hand" in {
