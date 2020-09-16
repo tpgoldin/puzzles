@@ -3,7 +3,7 @@ package com.tpg.puzzles.two.eight.two
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should
 
-class TwoPairsSpec extends AnyFlatSpec with should.Matchers {
+class TwoPairsSpec extends PokerHandSpec {
   val twoPairs = TwoPairs(Seq())
 
   "Two pairs hand" should "rank higher than a high card hand" in {
@@ -25,32 +25,22 @@ class TwoPairsSpec extends AnyFlatSpec with should.Matchers {
   }
 
   "Two pairs hand" should "rank lower than a straight card hand" in {
-    val value = Straight(Seq())
-
-    twoPairs.rank(value) should be < 0
+    twoPairs.rank(aStraight) should be < 0
   }
 
   "Two pairs hand" should "rank lower than a flush card hand" in {
-    val value = Flush(Seq())
-
-    twoPairs.rank(value) should be < 0
+    twoPairs.rank(aFlush) should be < 0
   }
 
   "Two pairs hand" should "rank lower than a full house card hand" in {
-    val value = FullHouse(Seq())
-
-    twoPairs.rank(value) should be < 0
+    twoPairs.rank(aFullHouse) should be < 0
   }
 
   "Two pairs hand" should "rank lower than a four of a kind card hand" in {
-    val value = FourOfAKind(Seq())
-
-    twoPairs.rank(value) should be < 0
+    twoPairs.rank(aFourOfAKind) should be < 0
   }
 
   "Two pairs hand" should "rank lower than a straight flush card hand" in {
-    val value = StraightFlush(Seq())
-
-    twoPairs.rank(value) should be < 0
+    twoPairs.rank(aStraightFlush) should be < 0
   }
 }

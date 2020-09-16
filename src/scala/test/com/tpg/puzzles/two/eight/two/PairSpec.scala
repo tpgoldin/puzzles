@@ -1,9 +1,6 @@
 package com.tpg.puzzles.two.eight.two
 
-import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should
-
-class PairSpec extends AnyFlatSpec with should.Matchers {
+class PairSpec extends PokerHandSpec {
   val pair = Pair(Seq())
 
   "Pair hand" should "rank higher than a high card hand" in {
@@ -12,45 +9,35 @@ class PairSpec extends AnyFlatSpec with should.Matchers {
     pair.rank(value) should be > 0
   }
 
-  "Pair hand" should "rank lower than a two pairs hand" in {
+  "it" should "rank lower than a two pairs hand" in {
     val value = TwoPairs(Seq())
 
     pair.rank(value) should be < 0
   }
 
-  "Pair hand" should "rank lower than a three of a kind hand" in {
+  "it" should "rank lower than a three of a kind hand" in {
     val value = ThreeOfAKind(Seq())
 
     pair.rank(value) should be < 0
   }
 
-  "Pair hand" should "rank lower than a straight hand" in {
-    val value = Straight(Seq())
-
-    pair.rank(value) should be < 0
+  "it" should "rank lower than a straight hand" in {
+    pair.rank(aStraight) should be < 0
   }
 
-  "Pair hand" should "rank lower than a flush hand" in {
-    val value = Flush(Seq())
-
-    pair.rank(value) should be < 0
+  "it" should "rank lower than a flush hand" in {
+    pair.rank(aFlush) should be < 0
   }
 
-  "Pair hand" should "rank lower than a full house hand" in {
-    val value = FullHouse(Seq())
-
-    pair.rank(value) should be < 0
+  "it" should "rank lower than a full house hand" in {
+    pair.rank(aFullHouse) should be < 0
   }
 
-  "Pair hand" should "rank lower than a four of a kind hand" in {
-    val value = FourOfAKind(Seq())
-
-    pair.rank(value) should be < 0
+  "it" should "rank lower than a four of a kind hand" in {
+    pair.rank(aFourOfAKind) should be < 0
   }
 
-  "Pair hand" should "rank lower than a straight flush hand" in {
-    val value = StraightFlush(Seq())
-
-    pair.rank(value) should be < 0
+  "it" should "rank lower than a straight flush hand" in {
+    pair.rank(aStraightFlush) should be < 0
   }
 }

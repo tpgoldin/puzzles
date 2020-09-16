@@ -2,7 +2,7 @@ package com.tpg.puzzles.two.eight.two
 
 import com.tpg.puzzles.two.eight.two.PokerHandType.FourOfAKindType
 
-class FourOfAKind(cards: Seq[Card]) extends PokerHand(FourOfAKindType, cards) with Rank {
+class FourOfAKind private(override val cards: Seq[Card]) extends PokerHand(FourOfAKindType, cards) with Rank {
   override def rank(that: PokerHand): Int = {
     if (this.handType.value > that.handType.value) { return 1 }
     if (this.handType.value < that.handType.value) { return -1 }
@@ -10,6 +10,16 @@ class FourOfAKind(cards: Seq[Card]) extends PokerHand(FourOfAKindType, cards) wi
   }
 }
 
-object FourOfAKind {
-  def apply(cards: Seq[Card]) : FourOfAKind = new FourOfAKind(cards)
+object FourOfAKind extends CorrectSizeCheck {
+  def apply(cards: Seq[Card]) : Option[FourOfAKind] = {
+    if (!correctSize(cards)) { return None }
+
+    val groupBy = cards.groupBy(_.value)
+    val aList = groupBy.map(_._2.size).toList
+
+    val forAll = Seq(1, 4).forall(aList.contains(_))
+    if (!forAll) { return None }
+
+    Some(new FourOfAKind(cards))
+  }
 }
