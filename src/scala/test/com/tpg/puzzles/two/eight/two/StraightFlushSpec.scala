@@ -1,5 +1,6 @@
 package com.tpg.puzzles.two.eight.two
 
+import com.tpg.puzzles.two.eight.two.CardLabel.{Five, Four, Nine, Six, Three, Two}
 import com.tpg.puzzles.two.eight.two.Suit.{Diamonds, Hearts}
 
 class StraightFlushSpec extends PokerHandSpec {
@@ -7,15 +8,15 @@ class StraightFlushSpec extends PokerHandSpec {
   "Straight flush hand" should "consist of five cards" in {
     aStraightFlush.cards.size should be(5)
 
-    StraightFlush(Seq(Card(Hearts, "Two", 2), Card(Hearts, "Three", 3), Card(Hearts, "Four", 4))) shouldBe None
+    StraightFlush(Seq(Card(Hearts, Two), Card(Hearts, Three), Card(Hearts, Four))) shouldBe None
     StraightFlush(Seq()) shouldBe None
   }
 
   "it" should "consist of cards of the same suit" in {
     aStraightFlush.cards.forall(_.suit == Hearts)
 
-    val notStraightFlush = StraightFlush(Seq(Card(Hearts, "Two", 2), Card(Diamonds, "Three", 3), Card(Hearts, "Four", 4),
-      Card(Hearts, "Five", 5), Card(Hearts, "Six", 6)))
+    val notStraightFlush = StraightFlush(Seq(Card(Hearts, Two), Card(Diamonds, Three), Card(Hearts, Four),
+      Card(Hearts, Five), Card(Hearts, Six)))
 
     notStraightFlush shouldBe None
   }
@@ -30,10 +31,8 @@ class StraightFlushSpec extends PokerHandSpec {
 
     aStraightFlush.cards shouldBe selectedCards.sortBy(_.value)
 
-    val notStraightFlush = StraightFlush(Seq(Card(Hearts, "Two", 2), Card(Hearts, "Nine", 9), Card(Hearts, "Four", 4),
-      Card(Hearts, "Five", 5), Card(Hearts, "Six", 6)))
-
-    notStraightFlush shouldBe None
+    StraightFlush(Seq(Card(Hearts, Two), Card(Hearts, Nine), Card(Hearts, Four), Card(Hearts, Five),
+      Card(Hearts, Six))) shouldBe None
   }
 
   "it" should "rank higher than a high card hand" in {

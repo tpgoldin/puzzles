@@ -1,5 +1,6 @@
 package com.tpg.puzzles.two.eight.two
 
+import com.tpg.puzzles.two.eight.two.CardLabel.{Eight, Four, Six, Two}
 import com.tpg.puzzles.two.eight.two.Suit.{Diamonds, Hearts}
 
 class FullHouseSpec extends PokerHandSpec {
@@ -8,7 +9,7 @@ class FullHouseSpec extends PokerHandSpec {
     aFullHouse.cards.size should be (5)
 
     FullHouse(Seq()) shouldBe None
-    FullHouse(Seq(Card(Hearts, "Two", 2))) shouldBe None
+    FullHouse(Seq(Card(Hearts, Two))) shouldBe None
   }
 
   "it" should "consist of three cards of the same value and another pair of cards of a different value" in {
@@ -17,9 +18,8 @@ class FullHouseSpec extends PokerHandSpec {
     groupBy(5).size should be(3)
     groupBy(6).size should be(2)
 
-    val notFullHouse = FullHouse(Seq(Card(Hearts, "Two", 2), Card(Diamonds, "Two", 2), Card(Hearts, "Four", 4),
-      Card(Hearts, "Six", 6), Card(Hearts, "Eight", 8)))
-    notFullHouse shouldBe None
+    FullHouse(Seq(Card(Hearts, Two), Card(Diamonds, Two), Card(Hearts, Four), Card(Hearts, Six),
+      Card(Hearts, Eight))) shouldBe None
   }
 
   "it" should "rank higher than a high card hand" in {

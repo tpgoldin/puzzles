@@ -1,12 +1,13 @@
 package com.tpg.puzzles.two.eight.two
 
+import com.tpg.puzzles.two.eight.two.CardLabel.{Five, Six, Two}
 import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts}
 
 class FourOfAKindSpec extends PokerHandSpec {
   "Four of a kind hand" should "consist of five cards" in {
     aFourOfAKind.cards.size should be(5)
 
-    FourOfAKind(Seq(Card(Hearts, "Two", 2), Card(Clubs, "Two", 3), Card(Diamonds, "Two", 2))) shouldBe None
+    FourOfAKind(Seq(Card(Hearts, Two), Card(Clubs, Two), Card(Diamonds, Two))) shouldBe None
     FourOfAKind(Seq()) shouldBe None
   }
 
@@ -16,8 +17,8 @@ class FourOfAKindSpec extends PokerHandSpec {
     groupBy(2).size should be(4)
     groupBy(3).size should be(1)
 
-    FourOfAKind(Seq(Card(Hearts, "Two", 2), Card(Clubs, "Two", 2), Card(Diamonds, "Two", 2), Card(Hearts, "Five", 5),
-      Card(Hearts, "Six", 6))) shouldBe None
+    FourOfAKind(Seq(Card(Hearts, Two), Card(Clubs, Two), Card(Diamonds, Two), Card(Hearts, Five),
+      Card(Hearts, Six))) shouldBe None
   }
 
   "it" should "rank higher than a high card hand" in {

@@ -1,12 +1,13 @@
 package com.tpg.puzzles.two.eight.two
 
+import com.tpg.puzzles.two.eight.two.CardLabel.{Four, Seven, Six, Ten, Three}
 import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts}
 
 class StraightSpec extends PokerHandSpec {
   "Straight" should "consist of five cards" in {
     aStraight.cards.size should be(5)
 
-    Straight(Seq(Card(Hearts, "Six", 6), Card(Hearts, "Seven", 7))) shouldBe None
+    Straight(Seq(Card(Hearts, Six), Card(Hearts, Seven))) shouldBe None
     Straight(Seq()) shouldBe None
   }
 
@@ -20,7 +21,8 @@ class StraightSpec extends PokerHandSpec {
     val range = min to max
     range.forall(i => range.contains(i)) should be(true)
 
-    Straight(Seq(Card(Diamonds, "Three", 3), Card(Hearts, "Four", 4), Card(Hearts, "Six", 6), Card(Hearts, "Seven", 7), Card(Clubs, "Ten", 10))) shouldBe None
+    Straight(Seq(Card(Diamonds, Three), Card(Hearts, Four), Card(Hearts, Six), Card(Hearts, Seven),
+      Card(Clubs, Ten))) shouldBe None
   }
 
   "it" should "rank higher than a high card hand" in {

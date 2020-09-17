@@ -1,12 +1,13 @@
 package com.tpg.puzzles.two.eight.two
 
+import com.tpg.puzzles.two.eight.two.CardLabel.{Eight, Five, Four, Nine, Seven, Three}
 import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts}
 
 class TwoPairsSpec extends PokerHandSpec {
   "Two pairs hand" should "consist of five cards" in {
     aTwoPairs.cards.size should be (5)
 
-    TwoPairs(Seq(Card(Hearts, "Five", 5), Card(Diamonds, "Seven", 7))) shouldBe None
+    TwoPairs(Seq(Card(Hearts, Five), Card(Diamonds, Seven))) shouldBe None
     TwoPairs(Seq()) shouldBe None
   }
 
@@ -15,14 +16,14 @@ class TwoPairsSpec extends PokerHandSpec {
 
     Seq(2, 7).foreach(groupBy(_).size should be(2))
 
-    val groupByAgain = TwoPairs(Seq(Hearts, Diamonds, Clubs).map(Card(_, "Three", 3)) ++
-      Seq(Card(Diamonds, "Four", 4), Card(Clubs, "Four", 4))).head.cards.groupBy(_.value)
+    val groupByAgain = TwoPairs(Seq(Hearts, Diamonds, Clubs).map(Card(_, Three)) ++
+      Seq(Card(Diamonds, Four), Card(Clubs, Four))).head.cards.groupBy(_.value)
 
-    groupByAgain(3) should equal (List(Hearts, Diamonds, Clubs).map(Card(_, "Three", 3)))
-    groupByAgain(4) should equal (List(Diamonds, Clubs).map(Card(_, "Four", 4)))
+    groupByAgain(3) should equal (List(Hearts, Diamonds, Clubs).map(Card(_, Three)))
+    groupByAgain(4) should equal (List(Diamonds, Clubs).map(Card(_, Four)))
 
-    TwoPairs(Seq(Hearts, Diamonds).map(Card(_, "Three", 3)) ++
-      Seq(Card(Diamonds, "Four", 4), Card(Clubs, "Eight", 8), Card(Clubs, "Nine", 9))) shouldBe None
+    TwoPairs(Seq(Hearts, Diamonds).map(Card(_, Three)) ++
+      Seq(Card(Diamonds, Four), Card(Clubs, Eight), Card(Clubs, Nine))) shouldBe None
   }
 
   "it" should "rank higher than a high card hand" in {

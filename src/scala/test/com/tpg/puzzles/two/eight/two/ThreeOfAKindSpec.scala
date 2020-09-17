@@ -1,12 +1,13 @@
 package com.tpg.puzzles.two.eight.two
 
+import com.tpg.puzzles.two.eight.two.CardLabel.Three
 import com.tpg.puzzles.two.eight.two.Suit.Hearts
 
 class ThreeOfAKindSpec extends PokerHandSpec {
   "Three of a kind" should "consist of five cards" in {
     aThreeOfAKind.cards.size should be (5)
 
-    ThreeOfAKind(Seq(Card(Hearts, "Three", 3))) shouldBe None
+    ThreeOfAKind(Seq(Card(Hearts, Three))) shouldBe None
     ThreeOfAKind(Seq()) shouldBe None
   }
 

@@ -1,12 +1,13 @@
 package com.tpg.puzzles.two.eight.two
 
+import com.tpg.puzzles.two.eight.two.CardLabel.King
 import com.tpg.puzzles.two.eight.two.Suit.Hearts
 
 class HighCardSpec extends PokerHandSpec {
   "High card" should "consist of five cards" in {
     aHighCard.cards.size should be(5)
 
-    HighCard(Seq(Card(Hearts, "King", 13))) shouldBe None
+    HighCard(Seq(Card(Hearts, King))) shouldBe None
     HighCard(Seq()) shouldBe None
   }
 

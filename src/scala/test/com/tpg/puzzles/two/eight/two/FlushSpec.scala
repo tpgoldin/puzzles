@@ -1,5 +1,6 @@
 package com.tpg.puzzles.two.eight.two
 
+import com.tpg.puzzles.two.eight.two.CardLabel.{Five, Four, Jack, Queen, Two}
 import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Spades}
 
 class FlushSpec extends PokerHandSpec {
@@ -7,7 +8,7 @@ class FlushSpec extends PokerHandSpec {
   "Flush hand" should "consist of five cards" in {
     aFlush.cards.size should be(5)
 
-    Flush(Seq(Card(Spades, "Four", 4), Card(Clubs, "Queen", 12))) shouldBe None
+    Flush(Seq(Card(Spades, Four), Card(Clubs, Queen))) shouldBe None
     Flush(Seq()) shouldBe None
   }
 
@@ -17,7 +18,7 @@ class FlushSpec extends PokerHandSpec {
     groupBy.size should be (1)
     groupBy(Diamonds).size should be (5)
 
-    Flush(Seq(Card(Spades, "Four", 4), Card(Clubs, "Two", 2), Card(Clubs, "Five", 5), Card(Clubs, "Jack", 11), Card(Clubs, "Queen", 12))) shouldBe None
+    Flush(Seq(Card(Spades, Four), Card(Clubs, Two), Card(Clubs, Five), Card(Clubs, Jack), Card(Clubs, Queen))) shouldBe None
   }
 
   "it" should "rank higher than a high card hand" in {

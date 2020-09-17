@@ -1,19 +1,21 @@
 package com.tpg.puzzles.two.eight.two
 
-case class Card(suit: Suit, label: String, value: Int) {
-  override def toString: String = s"$label of $suit"
+case class Card(suit: Suit, private val cardLabel: CardLabel) {
+  val label = cardLabel.label
+  val value = cardLabel.value
+
+  override def toString: String = s"${label} of $suit"
 }
 
-case class PackOfCards(cards: Map[Suit, Seq[Card]]) {}
+case class PackOfCards private(cards: Map[Suit, Seq[Card]]) {}
 
 object PackOfCards {
   def apply(): PackOfCards = {
 
-    val entities = Map("Two" -> 2, "Three" -> 3, "Four" -> 4, "Five" -> 5, "Six" -> 6,
-      "Seven" -> 7, "Eight" -> 8, "Nine" -> 9, "Ten" -> 10, "Jack" -> 11, "Queen" -> 12, "King" -> 13, "Ace" -> 14)
+    val labels = CardLabel.values
 
-    val cards = for (suit <- Suit.values; entity <- entities)
-      yield Card(suit, entity._1, entity._2)
+    val cards = for (suit <- Suit.values; label <- labels)
+      yield Card(suit, label)
 
     PackOfCards(cards.groupBy(_.suit))
   }

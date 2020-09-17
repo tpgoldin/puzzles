@@ -1,12 +1,13 @@
 package com.tpg.puzzles.two.eight.two
 
+import com.tpg.puzzles.two.eight.two.CardLabel.{Ace, Ten, Two}
 import com.tpg.puzzles.two.eight.two.Suit.{Diamonds, Hearts}
 
 class PairSpec extends PokerHandSpec {
   "Pair" should "consist of five cards" in {
     aPair.cards.size should be(5)
 
-    Pair(Seq(Card(Diamonds, "Ten", 10), Card(Diamonds, "Ace", 14))) shouldBe None
+    Pair(Seq(Card(Diamonds, Ten), Card(Diamonds, Ace))) shouldBe None
     Pair(Seq()) shouldBe None
   }
 
@@ -14,7 +15,7 @@ class PairSpec extends PokerHandSpec {
     val groupBy = aPair.cards.groupBy(_.value)
 
     groupBy.count(_._2.size == 2) should be(1)
-    groupBy(2) should equal (Seq(Hearts, Diamonds).map(Card(_, "Two", 2)))
+    groupBy(2) should equal (Seq(Hearts, Diamonds).map(Card(_, Two)))
 
     groupBy.count(_._2.size == 1) should be(3)
   }
