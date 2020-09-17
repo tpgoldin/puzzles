@@ -4,7 +4,7 @@ case class Card(suit: Suit, private val cardLabel: CardLabel) {
   val label = cardLabel.label
   val value = cardLabel.value
 
-  override def toString: String = s"${label} of $suit"
+  override def toString: String = s"$label of $suit"
 }
 
 case class PackOfCards private(cards: Map[Suit, Seq[Card]]) {}
