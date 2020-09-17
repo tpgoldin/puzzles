@@ -1,39 +1,53 @@
 package com.tpg.puzzles.two.eight.two
 
+import com.tpg.puzzles.two.eight.two.Suit.{Diamonds, Hearts}
+
 class PairSpec extends PokerHandSpec {
-  val pair = Pair(Seq())
+  "Pair" should "consist of five cards" in {
+    aPair.cards.size should be(5)
 
-  "Pair hand" should "rank higher than a high card hand" in {
-    val value = HighCard(Seq())
+    Pair(Seq(Card(Diamonds, "Ten", 10), Card(Diamonds, "Ace", 14))) shouldBe None
+    Pair(Seq()) shouldBe None
+  }
 
-    pair.rank(value) should be > 0
+  "it" should "consist of a single pair of cards with the same value" in {
+    val groupBy = aPair.cards.groupBy(_.value)
+
+    groupBy.count(_._2.size == 2) should be(1)
+    groupBy(2) should equal (Seq(Hearts, Diamonds).map(Card(_, "Two", 2)))
+
+    groupBy.count(_._2.size == 1) should be(3)
+  }
+
+  "it" should "rank higher than a high card hand" in {
+    aPair.rank(aHighCard) should be > 0
   }
 
   "it" should "rank lower than a two pairs hand" in {
-    pair.rank(aTwoPairs) should be < 0
+    aPair.rank(aTwoPairs) should be < 0
   }
 
   "it" should "rank lower than a three of a kind hand" in {
-    pair.rank(aThreeOfAKind) should be < 0
+    aPair.rank(aThreeOfAKind) should be < 0
   }
 
   "it" should "rank lower than a straight hand" in {
-    pair.rank(aStraight) should be < 0
+    aPair.rank(aStraight) should be < 0
   }
 
   "it" should "rank lower than a flush hand" in {
-    pair.rank(aFlush) should be < 0
+    aPair.rank(aFlush) should be < 0
   }
 
   "it" should "rank lower than a full house hand" in {
-    pair.rank(aFullHouse) should be < 0
+    aPair.rank(aFullHouse) should be < 0
   }
 
   "it" should "rank lower than a four of a kind hand" in {
-    pair.rank(aFourOfAKind) should be < 0
+    aPair.rank(aFourOfAKind) should be < 0
   }
 
   "it" should "rank lower than a straight flush hand" in {
-    pair.rank(aStraightFlush) should be < 0
+    aPair.rank(aStraightFlush) should be < 0
   }
 }

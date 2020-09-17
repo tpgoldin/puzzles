@@ -10,6 +10,10 @@ class Pair private(override val cards: Seq[Card]) extends PokerHand(PairType, ca
   }
 }
 
-object Pair {
-  def apply(cards: Seq[Card]) : Pair = new Pair(cards)
+object Pair extends CorrectSizeCheck {
+  def apply(cards: Seq[Card]) : Option[Pair] = {
+    if (!correctSize(cards)) { return None }
+
+    Some(new Pair(cards))
+  }
 }

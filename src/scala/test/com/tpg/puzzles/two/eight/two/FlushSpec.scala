@@ -21,15 +21,11 @@ class FlushSpec extends PokerHandSpec {
   }
 
   "it" should "rank higher than a high card hand" in {
-    val value = HighCard(Seq())
-
-    aFlush.rank(value) should be > 0
+    aFlush.rank(aHighCard) should be > 0
   }
 
   "it" should "rank higher than a pair hand" in {
-    val value = Pair(Seq())
-
-    aFlush.rank(value) should be > 0
+    aFlush.rank(aPair) should be > 0
   }
 
   "it" should "rank higher than a two pairs hand" in {

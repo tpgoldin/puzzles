@@ -1,39 +1,49 @@
 package com.tpg.puzzles.two.eight.two
 
+import com.tpg.puzzles.two.eight.two.Suit.Hearts
+
 class HighCardSpec extends PokerHandSpec {
-  val highCard = HighCard(Seq())
+  "High card" should "consist of five cards" in {
+    aHighCard.cards.size should be(5)
 
-  "High hand" should "rank lower than a pair hand" in {
-    val value = Pair(Seq())
-
-    highCard.rank(value) should be < 0
+    HighCard(Seq(Card(Hearts, "King", 13))) shouldBe None
+    HighCard(Seq()) shouldBe None
   }
 
-  "High hand" should "rank lower than a two pair hand" in {
-    highCard.rank(aTwoPairs) should be < 0
+  "it" should "not match any of the other hand types" in {
+    Seq(aPair, aTwoPairs, aThreeOfAKind, aStraight, aFlush, aFullHouse, aFourOfAKind, aStraightFlush)
+      .foreach(aHighCard should not equal _)
   }
 
-  "High hand" should "rank lower than a three of a kind hand" in {
-    highCard.rank(aThreeOfAKind) should be < 0
+  "it" should "rank lower than a pair hand" in {
+    aHighCard.rank(aPair) should be < 0
   }
 
-  "High hand" should "rank lower than a straight hand" in {
-    highCard.rank(aStraight) should be < 0
+  "it" should "rank lower than a two pair hand" in {
+    aHighCard.rank(aTwoPairs) should be < 0
   }
 
-  "High hand" should "rank lower than a flush hand" in {
-    highCard.rank(aFlush) should be < 0
+  "it" should "rank lower than a three of a kind hand" in {
+    aHighCard.rank(aThreeOfAKind) should be < 0
   }
 
-  "High hand" should "rank lower than a full house hand" in {
-    highCard.rank(aFullHouse) should be < 0
+  "it" should "rank lower than a straight hand" in {
+    aHighCard.rank(aStraight) should be < 0
   }
 
-  "High hand" should "rank lower than a four of a kind hand" in {
-    highCard.rank(aFourOfAKind) should be < 0
+  "it" should "rank lower than a flush hand" in {
+    aHighCard.rank(aFlush) should be < 0
   }
 
-  "High hand" should "rank lower than a straight flush hand" in {
-    highCard.rank(aStraightFlush) should be < 0
+  "it" should "rank lower than a full house hand" in {
+    aHighCard.rank(aFullHouse) should be < 0
+  }
+
+  "it" should "rank lower than a four of a kind hand" in {
+    aHighCard.rank(aFourOfAKind) should be < 0
+  }
+
+  "it" should "rank lower than a straight flush hand" in {
+    aHighCard.rank(aStraightFlush) should be < 0
   }
 }

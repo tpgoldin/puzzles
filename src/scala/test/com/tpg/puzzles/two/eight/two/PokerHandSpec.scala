@@ -24,4 +24,10 @@ class PokerHandSpec extends AnyFlatSpec with should.Matchers {
 
   val aTwoPairs = TwoPairs(Seq(Hearts, Diamonds).map(Card(_, "Two", 2)) ++ Seq(Clubs, Diamonds).map(Card(_, "Seven", 7)) ++
     Seq(Card(Hearts, "Queen", 12))).head
+
+  val aPair = Pair(Seq(Hearts, Diamonds).map(Card(_, "Two", 2)) ++ Seq(Card(Clubs, "Seven", 7), Card(Clubs, "Eight", 8)) ++
+    Seq(Card(Hearts, "Queen", 12))).head
+
+  val aHighCard = HighCard(Seq(Card(Hearts, "Two", 2), Card(Hearts, "Four", 4), Card(Diamonds, "Six", 6),
+    Card(Clubs, "Ten", 10), Card(Clubs, "Queen", 12))).head
 }

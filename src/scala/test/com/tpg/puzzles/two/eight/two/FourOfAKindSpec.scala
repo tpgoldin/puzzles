@@ -21,9 +21,7 @@ class FourOfAKindSpec extends PokerHandSpec {
   }
 
   "it" should "rank higher than a high card hand" in {
-    val value = HighCard(Seq())
-
-    aFourOfAKind.rank(value) should be > 0
+    aFourOfAKind.rank(aHighCard) should be > 0
   }
 
   "it" should "rank higher than a pair hand" in {

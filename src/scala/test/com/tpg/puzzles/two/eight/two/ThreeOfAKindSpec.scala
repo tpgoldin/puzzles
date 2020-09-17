@@ -19,15 +19,11 @@ class ThreeOfAKindSpec extends PokerHandSpec {
   }
 
   "it" should "rank higher than a high card hand" in {
-    val value = HighCard(Seq())
-
-    aThreeOfAKind.rank(value) should be > 0
+    aThreeOfAKind.rank(aHighCard) should be > 0
   }
 
   "it" should "rank higher than a pair hand" in {
-    val value = Pair(Seq())
-
-    aThreeOfAKind.rank(value) should be > 0
+    aThreeOfAKind.rank(aPair) should be > 0
   }
 
   "it" should "rank higher than a two pairs hand" in {

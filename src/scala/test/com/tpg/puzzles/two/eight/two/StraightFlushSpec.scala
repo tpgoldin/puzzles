@@ -37,15 +37,11 @@ class StraightFlushSpec extends PokerHandSpec {
   }
 
   "it" should "rank higher than a high card hand" in {
-    val value = HighCard(Seq())
-
-    aStraightFlush.rank(value) should be > 0
+    aStraightFlush.rank(aHighCard) should be > 0
   }
 
   "it" should "rank higher than a pair hand" in {
-    val value = Pair(Seq())
-
-    aStraightFlush.rank(value) should be > 0
+    aStraightFlush.rank(aPair) should be > 0
   }
 
   "it" should "rank higher than a two pairs hand" in {

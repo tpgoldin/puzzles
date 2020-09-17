@@ -9,6 +9,10 @@ class HighCard private(override val cards: Seq[Card]) extends PokerHand(HighCard
   }
 }
 
-object HighCard {
-  def apply(cards: Seq[Card]) : HighCard = new HighCard(cards)
+object HighCard extends CorrectSizeCheck {
+  def apply(cards: Seq[Card]) : Option[HighCard] = {
+    if (!correctSize(cards)) { return None }
+
+    Some(new HighCard(cards))
+  }
 }
