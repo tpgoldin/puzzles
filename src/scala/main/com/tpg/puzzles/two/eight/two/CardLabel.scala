@@ -1,6 +1,7 @@
 package com.tpg.puzzles.two.eight.two
 
 sealed case class CardLabel(label: String, value: Int) {
+  val symbol: String = value.toString
 }
 
 object CardLabel {
@@ -19,4 +20,6 @@ object CardLabel {
   object Ace extends CardLabel("Ace",14)
 
   val values = Seq(Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten)
+
+  def apply(symbol: String) : Option[CardLabel] = values.find(_.symbol == symbol)
 }

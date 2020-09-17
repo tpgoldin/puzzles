@@ -11,4 +11,6 @@ object Suit {
   object Spades extends Suit("Spades", "S")
 
   val values = Seq(Hearts, Diamonds, Clubs, Spades)
+
+  def apply(symbol: String): Option[Suit] = values.find(_.value == symbol)
 }
