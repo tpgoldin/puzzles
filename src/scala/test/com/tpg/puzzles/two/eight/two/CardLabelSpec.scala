@@ -4,107 +4,107 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should
 
 class CardLabelSpec extends AnyFlatSpec with should.Matchers {
-  "Card label Two" should "consist of label two and value 2" in {
+  "Card label Two" should "consist of label two, value 2, and symbol '2'" in {
     CardLabel.Two should have (
       'label("Two"),
       'value(2),
-      'symbol("2")
+      'symbol('2')
     )
   }
 
-  "Card label Three" should "consist of label three and value 3" in {
+  "Card label Three" should "consist of label three, value 3, and symbol '3'" in {
     CardLabel.Three should have (
       'label("Three"),
       'value(3),
-      'symbol("3")
+      'symbol('3')
     )
   }
 
-  "Card label Four" should "consist of label four and value 4" in {
+  "Card label Four" should "consist of label four, value 4, and symbol '4'" in {
     CardLabel.Four should have (
       'label("Four"),
       'value(4),
-      'symbol("4")
+      'symbol('4')
     )
   }
 
-  "Card label Five" should "consist of label five and value 5" in {
+  "Card label Five" should "consist of label five, value 5, and symbol '5'" in {
     CardLabel.Five should have (
       'label("Five"),
       'value(5),
-      'symbol("5")
+      'symbol('5')
     )
   }
 
-  "Card label Six" should "consist of label six and value 6"in {
+  "Card label Six" should "consist of label six, value 6, and symbol '6'"in {
     CardLabel.Six should have (
       'label("Six"),
       'value(6),
-      'symbol("6")
+      'symbol('6')
     )
   }
 
-  "Card label Seven" should "consist of label seven and value 7" in {
+  "Card label Seven" should "consist of label seven, value 7, and symbol '7'" in {
     CardLabel.Seven should have (
       'label("Seven"),
       'value(7),
-      'symbol("7")
+      'symbol('7')
     )
   }
 
-  "Card label Eight" should "consist of label eight and value 8" in {
+  "Card label Eight" should "consist of label eight, value 8, and symbol '8'" in {
     CardLabel.Eight should have (
       'label("Eight"),
       'value(8),
-      'symbol("8")
+      'symbol('8')
     )
   }
 
-  "Card label Nine" should "consist of label nine and value 9" in {
+  "Card label Nine" should "consist of label nine, value 9, and symbol '9'" in {
     CardLabel.Nine should have (
       'label("Nine"),
       'value(9),
-      'symbol("9")
+      'symbol('9')
     )
   }
 
-  "Card label Ten" should "consist of label ten and value 10" in {
+  "Card label Ten" should "consist of label ten, value 10, and symbol 'T'" in {
     CardLabel.Ten should have (
       'label("Ten"),
       'value(10),
-      'symbol("10")
+      'symbol('T')
     )
   }
 
-  "Card label Jack" should "consist of label jack and value 11" in {
+  "Card label Jack" should "consist of label jack, value 11, and symbol 'J'" in {
     CardLabel.Jack should have (
       'label("Jack"),
       'value(11),
-      'symbol("11")
+      'symbol('J')
     )
   }
 
-  "Card label Queen" should "consist of label queen and value 12" in {
+  "Card label Queen" should "consist of label queen, value 12, and symbol 'Q'" in {
     CardLabel.Queen should have (
       'label("Queen"),
       'value(12),
-      'symbol("12")
+      'symbol('Q')
     )
   }
 
-  "Card label King" should "consist of label king and value 13"in {
+  "Card label King" should "consist of label king, value 13, and symbol 'K'" in {
     CardLabel.King should have (
       'label("King"),
       'value(13),
-      'symbol("13")
+      'symbol('K')
     )
   }
 
-  "Card label Ace" should "consist of label ace and value 14"in {
+  "Card label Ace" should "consist of label ace, value 14, and symbol 'A'" in {
     CardLabel.Ace should have (
       'label("Ace"),
       'value(14),
-      'symbol("14")
+      'symbol('A')
     )
   }
 }
