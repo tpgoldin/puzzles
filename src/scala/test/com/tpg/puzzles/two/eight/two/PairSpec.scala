@@ -1,7 +1,7 @@
 package com.tpg.puzzles.two.eight.two
 
-import com.tpg.puzzles.two.eight.two.CardLabel.{Ace, Ten, Two}
-import com.tpg.puzzles.two.eight.two.Suit.{Diamonds, Hearts}
+import com.tpg.puzzles.two.eight.two.CardLabel.{Ace, Eight, Nine, Queen, Seven, Ten, Three, Two}
+import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts}
 
 class PairSpec extends PokerHandSpec {
   "Pair" should "consist of five cards" in {
@@ -52,5 +52,31 @@ class PairSpec extends PokerHandSpec {
 
   "it" should "rank lower than a straight flush hand" in {
     aPair.rank(aStraightFlush) should be < 0
+  }
+
+  "it" should "rank greater than with pair with highest value" in {
+    val aPair1 = Pair(Seq(Hearts, Diamonds).map(Card(_, Two)) ++ Seq(Seven, Eight).map(Card(Clubs, _)) ++
+      Seq(Card(Hearts, Queen))).head
+
+    val aPair2 = Pair(Seq(Hearts, Diamonds).map(Card(_, Three)) ++ Seq(Seven, Eight).map(Card(Clubs, _)) ++
+      Seq(Card(Hearts, Queen))).head
+
+    aPair2.rank(aPair1) should be > 0
+    aPair1.rank(aPair2) should be < 0
+  }
+
+  "it" should "rank greater than when pair with highest value are the same and the next highest value in the remaining card values" in {
+    val aPair1 = Pair(Seq(Hearts, Diamonds).map(Card(_, Two)) ++ Seq(Seven, Eight).map(Card(Clubs, _)) ++
+      Seq(Card(Hearts, Queen))).head
+
+    val aPair2 = Pair(Seq(Hearts, Diamonds).map(Card(_, Two)) ++ Seq(Eight, Nine).map(Card(Clubs, _)) ++
+      Seq(Card(Hearts, Queen))).head
+
+    aPair2.rank(aPair1) should be > 0
+    aPair1.rank(aPair2) should be < 0
+  }
+
+  "it" should "rank equal when values are the same" in {
+    aPair.rank(aPair) should be(0)
   }
 }

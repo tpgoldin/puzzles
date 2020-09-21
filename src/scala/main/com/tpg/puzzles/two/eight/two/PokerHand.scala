@@ -1,6 +1,18 @@
 package com.tpg.puzzles.two.eight.two
 
-abstract class PokerHand(val handType: PokerHandType, val cards: Seq[Card]) {
+abstract class PokerHand(val handType: PokerHandType, val cards: Seq[Card]) extends Rank with Ranking {
+  override def ranking(left: Seq[Int], right: Seq[Int], range: List[Int]) : Int = {
+    val head = range.head
+    val tail = range.tail
+
+    if (tail.isEmpty) { return 0 }
+    if (left(head) > right(head)) { return 1 }
+
+    if (left(head) == right(head)) { return ranking(left, right, tail) }
+
+    -1
+  }
+
   override def toString: String = cards.toString()
 }
 

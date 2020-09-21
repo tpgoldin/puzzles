@@ -2,7 +2,7 @@ package com.tpg.puzzles.two.eight.two
 
 import com.tpg.puzzles.two.eight.two.PokerHandType.HighCardType
 
-class HighCard private(override val cards: Seq[Card]) extends PokerHand(HighCardType, cards) with Rank {
+class HighCard private(override val cards: Seq[Card]) extends PokerHand(HighCardType, cards) {
   override def rank(that: PokerHand): Int = {
     if (this.handType.value < that.handType.value) { return -1 }
 
@@ -13,18 +13,6 @@ class HighCard private(override val cards: Seq[Card]) extends PokerHand(HighCard
 
     val range = (0 until 5).toList
     ranking(left, right, range)
-  }
-
-  private def ranking(left: Seq[Int], right: Seq[Int], range: List[Int]) : Int = {
-    val head = range.head
-    val tail = range.tail
-
-    if (tail.isEmpty) { return 0 }
-    if (left(head) > right(head)) { return 1 }
-
-    if (left(head) == right(head)) { return ranking(left, right, tail) }
-
-    -1
   }
 }
 
