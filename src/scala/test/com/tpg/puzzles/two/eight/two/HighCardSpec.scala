@@ -1,7 +1,7 @@
 package com.tpg.puzzles.two.eight.two
 
-import com.tpg.puzzles.two.eight.two.CardLabel.King
-import com.tpg.puzzles.two.eight.two.Suit.Hearts
+import com.tpg.puzzles.two.eight.two.CardLabel.{Five, Four, Jack, King, Queen, Six, Ten, Three, Two}
+import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts}
 
 class HighCardSpec extends PokerHandSpec {
   "High card" should "consist of five cards" in {
@@ -46,5 +46,31 @@ class HighCardSpec extends PokerHandSpec {
 
   "it" should "rank lower than a straight flush hand" in {
     aHighCard.rank(aStraightFlush) should be < 0
+  }
+
+  "it" should "be ranked by the highest card value" in {
+    val aHighCard1 = HighCard(Seq(Card(Hearts, Two), Card(Hearts, Four), Card(Diamonds, Six), Card(Clubs, Ten),
+      Card(Clubs, Queen))).head
+
+    val aHighCard2 = HighCard(Seq(Card(Hearts, Two), Card(Hearts, Four), Card(Diamonds, Six), Card(Clubs, Ten),
+      Card(Clubs, King))).head
+
+    aHighCard2.rank(aHighCard1) should be > 0
+    aHighCard1.rank(aHighCard2) should be < 0
+  }
+
+  "it" should "be ranked by the next highest card value if the highest card value is the same" in {
+    val aHighCard1 = HighCard(Seq(Card(Hearts, Two), Card(Hearts, Four), Card(Diamonds, Six), Card(Clubs, Ten),
+      Card(Clubs, Queen))).head
+
+    val aHighCard2 = HighCard(Seq(Card(Hearts, Two), Card(Hearts, Five), Card(Diamonds, Six), Card(Clubs, Ten),
+      Card(Clubs, Queen))).head
+
+    aHighCard2.rank(aHighCard1) should be > 0
+    aHighCard1.rank(aHighCard2) should be < 0
+  }
+
+  "it" should "rank equal if all values are the same" in {
+    aHighCard.rank(aHighCard) should be(0)
   }
 }
