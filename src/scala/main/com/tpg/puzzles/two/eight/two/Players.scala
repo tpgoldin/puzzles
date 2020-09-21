@@ -10,10 +10,10 @@ object Colour {
   object Black extends Colour("Black")
 }
 
-sealed case class Player private(colour: Colour, hand: PokerHand)
+sealed case class Players private(colour: Colour, hand: PokerHand)
 
-object Player {
-  def apply(line: String) : Tuple2[Player, Player] = {
+object Players {
+  def apply(line: String) : Tuple2[Players, Players] = {
     val specs = line.split(" ")
 
     val blackPokerHand = PokerHand((0 until 5).map(specs(_)).toArray).map(blackPlayer)
@@ -25,9 +25,9 @@ object Player {
     (seq(0), seq(1))
   }
 
-  def blackPlayer(pokerHand: PokerHand) : Player = Player(Black, pokerHand)
+  def blackPlayer(pokerHand: PokerHand) : Players = Players(Black, pokerHand)
 
 
-  def whitePlayer(pokerHand: PokerHand) : Player = Player(White, pokerHand)
+  def whitePlayer(pokerHand: PokerHand) : Players = Players(White, pokerHand)
 
 }

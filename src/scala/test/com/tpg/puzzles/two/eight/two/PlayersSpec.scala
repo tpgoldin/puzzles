@@ -6,8 +6,8 @@ import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts, Spades}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should
 
-class PlayerSpec extends AnyFlatSpec with should.Matchers {
-  val actual = Player("2H 3D 5S 9C KD 2C 3H 4S 8C AH")
+class PlayersSpec extends AnyFlatSpec with should.Matchers {
+  val actual = Players("2H 3D 5S 9C KD 2C 3H 4S 8C AH")
 
   "Black player" should "receive the first five cards from the cards spec" in {
     actual._1.colour should be(Black)
