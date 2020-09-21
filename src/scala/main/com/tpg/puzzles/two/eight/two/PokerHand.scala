@@ -1,9 +1,25 @@
 package com.tpg.puzzles.two.eight.two
 
 abstract class PokerHand(val handType: PokerHandType, val cards: Seq[Card]) {
+  override def toString: String = cards.toString()
 }
 
 object PokerHand {
+  def apply(cardSpecs: Array[String]) : Option[PokerHand] = {
+    val packOfCards = PackOfCards()
+
+    val hand = cardSpecs.flatMap(toCard(_, packOfCards))
+
+    PokerHand(hand)
+  }
+
+  private def toCard(spec: String, packOfCards: PackOfCards) : Option[Card] = {
+    val cardLabel = CardLabel(spec.charAt(0))
+    val suit = Suit(spec.charAt(1).toString)
+
+    cardLabel.flatMap(cl => suit.flatMap(s => packOfCards(s, cl)))
+  }
+
   def apply(cards: Seq[Card]) : Option[PokerHand] = {
     val hand1 = StraightFlush(cards)
     if (hand1.nonEmpty) { return hand1 }

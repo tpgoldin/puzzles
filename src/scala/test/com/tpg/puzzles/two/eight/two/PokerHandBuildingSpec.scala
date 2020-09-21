@@ -41,4 +41,8 @@ class PokerHandBuildingSpec extends PokerHandSpec {
   "Poker hand applies" should "build high hand when cards do not match any other poker hand spec" in {
     PokerHand(aHighCard.cards).get shouldBe a [HighCard]
   }
+
+  "Poker hand applies" should "build a poker hand from cards spec" in {
+    PokerHand(Array("2H", "3D", "5S","9C", "KD")).get shouldBe a [PokerHand]
+  }
 }

@@ -1,20 +1,33 @@
 package com.tpg.puzzles.two.eight.two
 
-import com.tpg.puzzles.two.eight.two.Color.{Black, White}
+import com.tpg.puzzles.two.eight.two.Colour.{Black, White}
 
-sealed case class Color(label: String) {
+sealed case class Colour(label: String) {
 }
 
-object Color {
-  object White extends Color("White")
-  object Black extends Color("Black")
+object Colour {
+  object White extends Colour("White")
+  object Black extends Colour("Black")
 }
 
-sealed case class Player(color: Color, pokerHand: PokerHand)
+sealed case class Player private(colour: Colour, hand: PokerHand)
 
 object Player {
-  def blackPlayer(cards: Seq[Card]) : Option[Player] = {
-    val pokerHand = PokerHand(cards)
-    pokerHand.map(Player(Black, _))
+  def apply(line: String) : Tuple2[Player, Player] = {
+    val specs = line.split(" ")
+
+    val blackPokerHand = PokerHand((0 until 5).map(specs(_)).toArray).map(blackPlayer)
+
+    val whitePokerHand = PokerHand((5 until 10).map(specs(_)).toArray).map(whitePlayer)
+
+    val seq = Seq(blackPokerHand, whitePokerHand).flatten
+
+    (seq(0), seq(1))
   }
+
+  def blackPlayer(pokerHand: PokerHand) : Player = Player(Black, pokerHand)
+
+
+  def whitePlayer(pokerHand: PokerHand) : Player = Player(White, pokerHand)
+
 }

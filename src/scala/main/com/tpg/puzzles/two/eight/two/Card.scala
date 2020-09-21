@@ -7,7 +7,9 @@ case class Card(suit: Suit, private val cardLabel: CardLabel) {
   override def toString: String = s"$label of $suit"
 }
 
-case class PackOfCards private(cards: Map[Suit, Seq[Card]]) {}
+case class PackOfCards private(cards: Map[Suit, Seq[Card]]) {
+  def apply(suit: Suit, cardLabel: CardLabel) : Option[Card] = cards(suit).find(c => c == Card(suit, cardLabel))
+}
 
 object PackOfCards {
   def apply(): PackOfCards = {

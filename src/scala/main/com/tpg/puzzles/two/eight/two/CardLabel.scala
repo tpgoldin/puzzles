@@ -17,7 +17,7 @@ object CardLabel {
   object King extends CardLabel("King",13, 'K')
   object Ace extends CardLabel("Ace",14, 'A')
 
-  val values = Seq(Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten)
+  val values = Seq(Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace)
 
   def apply(symbol: Char) : Option[CardLabel] = values.find(_.symbol == symbol)
 }
