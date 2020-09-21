@@ -1,7 +1,7 @@
 package com.tpg.puzzles.two.eight.two
 
-import com.tpg.puzzles.two.eight.two.CardLabel.Three
-import com.tpg.puzzles.two.eight.two.Suit.Hearts
+import com.tpg.puzzles.two.eight.two.CardLabel.{Five, Four, Jack, Ten, Three}
+import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts}
 
 class ThreeOfAKindSpec extends PokerHandSpec {
   "Three of a kind" should "consist of five cards" in {
@@ -17,6 +17,8 @@ class ThreeOfAKindSpec extends PokerHandSpec {
     val aList = groupBy.map(_._2.size).toList
 
     aList.contains(3) should be (true)
+
+    ThreeOfAKind(Seq(Hearts, Diamonds).map(Card(_, Ten)) ++ Seq(Card(Clubs, Jack), Card(Diamonds, Four), Card(Diamonds, Five))) shouldBe None
   }
 
   "it" should "rank higher than a high card hand" in {

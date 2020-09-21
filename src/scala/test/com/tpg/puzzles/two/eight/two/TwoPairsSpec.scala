@@ -16,12 +16,6 @@ class TwoPairsSpec extends PokerHandSpec {
 
     Seq(2, 7).foreach(groupBy(_).size should be(2))
 
-    val groupByAgain = TwoPairs(Seq(Hearts, Diamonds, Clubs).map(Card(_, Three)) ++
-      Seq(Card(Diamonds, Four), Card(Clubs, Four))).head.cards.groupBy(_.value)
-
-    groupByAgain(3) should equal (List(Hearts, Diamonds, Clubs).map(Card(_, Three)))
-    groupByAgain(4) should equal (List(Diamonds, Clubs).map(Card(_, Four)))
-
     TwoPairs(Seq(Hearts, Diamonds).map(Card(_, Three)) ++
       Seq(Card(Diamonds, Four), Card(Clubs, Eight), Card(Clubs, Nine))) shouldBe None
   }

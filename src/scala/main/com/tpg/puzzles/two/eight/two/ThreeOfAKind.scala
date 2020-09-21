@@ -14,6 +14,11 @@ object ThreeOfAKind extends CorrectSizeCheck {
   def apply(cards: Seq[Card]) : Option[ThreeOfAKind] = {
     if (!correctSize(cards)) { return None }
 
+    val groupBy = cards.groupBy(_.value)
+    val aList = groupBy.map(_._2.size).toList
+
+    if (!aList.contains(3)) { return None }
+
     Some(new ThreeOfAKind(cards))
   }
 }

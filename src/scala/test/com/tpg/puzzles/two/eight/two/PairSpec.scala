@@ -18,6 +18,8 @@ class PairSpec extends PokerHandSpec {
     groupBy(2) should equal (Seq(Hearts, Diamonds).map(Card(_, Two)))
 
     groupBy.count(_._2.size == 1) should be(3)
+
+    Pair(aHighCard.cards) shouldBe None
   }
 
   "it" should "rank higher than a high card hand" in {

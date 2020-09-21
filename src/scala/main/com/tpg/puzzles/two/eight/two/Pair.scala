@@ -14,6 +14,10 @@ object Pair extends CorrectSizeCheck {
   def apply(cards: Seq[Card]) : Option[Pair] = {
     if (!correctSize(cards)) { return None }
 
+    val groupBy = cards.groupBy(_.value)
+
+    if (groupBy.count(_._2.size == 2)!= 1) { return None }
+
     Some(new Pair(cards))
   }
 }
