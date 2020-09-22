@@ -1,7 +1,7 @@
 package com.tpg.puzzles.two.eight.two
 
-import com.tpg.puzzles.two.eight.two.CardLabel.{Five, Four, Jack, Queen, Two}
-import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Spades}
+import com.tpg.puzzles.two.eight.two.CardLabel.{Eight, Five, Four, Jack, Queen, Seven, Six, Two}
+import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts, Spades}
 
 class FlushSpec extends PokerHandSpec {
 
@@ -51,5 +51,27 @@ class FlushSpec extends PokerHandSpec {
 
   "it" should "rank lower than a straight aFlush hand" in {
     aFlush.rank(aStraightFlush) should be < 0
+  }
+
+  "it" should "rank equal when the hands are the same" in {
+    aFlush.rank(aFlush) should be (0)
+  }
+
+  "it" should "rank greater when the highest value is greater" in {
+    val aFlush1 = Flush(Seq(Two, Five, Six, Eight, Jack).map(Card(Diamonds, _))).head
+
+    val aFlush2 = Flush(Seq(Two, Five, Six, Eight, Queen).map(Card(Hearts, _))).head
+
+    aFlush2.rank(aFlush1) should be > 0
+    aFlush1.rank(aFlush2) should be < 0
+  }
+
+  "it" should "rank greater when the next highest value is greater" in {
+    val aFlush1 = Flush(Seq(Two, Five, Six, Eight, Jack).map(Card(Diamonds, _))).head
+
+    val aFlush2 = Flush(Seq(Two, Five, Seven, Eight, Jack).map(Card(Hearts, _))).head
+
+    aFlush2.rank(aFlush1) should be > 0
+    aFlush1.rank(aFlush2) should be < 0
   }
 }
