@@ -6,7 +6,23 @@ class TwoPairs private(override val cards: Seq[Card]) extends PokerHand(TwoPairT
   override def rank(that: PokerHand): Int = {
     if (this.handType.value > that.handType.value) { return 1 }
     if (this.handType.value < that.handType.value) { return -1 }
-    0
+
+    val leftGroupBy = this.cards.groupBy(_.value)
+    val leftFiltered = leftGroupBy.filter(p => p._2.size > 1)
+    val leftSorted = leftFiltered.keys.toList.sorted.reverse
+
+    val rightGroupBy = that.cards.groupBy(_.value)
+    val rightFiltered = rightGroupBy.filter(p => p._2.size > 1)
+    val rightSorted = rightFiltered.keys.toList.sorted.reverse
+
+    if (leftSorted == rightSorted) {
+      val leftSingle = leftGroupBy.filter(p => p._2.size == 1).keys.head
+      val rightSingle = rightGroupBy.filter(p => p._2.size == 1).keys.head
+
+      return leftSingle compareTo rightSingle
+    }
+
+    ranking(leftSorted, rightSorted, List(0, 1))
   }
 }
 

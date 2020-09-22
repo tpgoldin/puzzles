@@ -5,8 +5,13 @@ abstract class PokerHand(val handType: PokerHandType, val cards: Seq[Card]) exte
     val head = range.head
     val tail = range.tail
 
-    if (tail.isEmpty) { return 0 }
     if (left(head) > right(head)) { return 1 }
+
+    if (tail.isEmpty) {
+      if (left(head) < right(head)) { return -1 }
+
+      return 0
+    }
 
     if (left(head) == right(head)) { return ranking(left, right, tail) }
 
