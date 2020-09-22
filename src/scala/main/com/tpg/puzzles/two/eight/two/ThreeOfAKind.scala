@@ -6,7 +6,11 @@ class ThreeOfAKind private(cards: Seq[Card]) extends PokerHand(ThreeOfAKindType,
   override def rank(that: PokerHand): Int = {
     if (this.handType.value > that.handType.value) { return 1 }
     if (this.handType.value < that.handType.value) { return -1 }
-    0
+
+    val left = this.cards.groupBy(_.value).filter(p => p._2.size > 1).head._1
+    val right = that.cards.groupBy(_.value).filter(p => p._2.size > 1).head._1
+
+    left compareTo right
   }
 }
 

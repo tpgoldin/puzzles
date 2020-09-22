@@ -1,6 +1,6 @@
 package com.tpg.puzzles.two.eight.two
 
-import com.tpg.puzzles.two.eight.two.CardLabel.{Five, Four, Jack, Ten, Three}
+import com.tpg.puzzles.two.eight.two.CardLabel.{Eight, Five, Four, Jack, Nine, Seven, Ten, Three}
 import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts}
 
 class ThreeOfAKindSpec extends PokerHandSpec {
@@ -51,5 +51,31 @@ class ThreeOfAKindSpec extends PokerHandSpec {
 
   "it" should "rank lower than a straight flush card hand" in {
     aThreeOfAKind.rank(aStraightFlush) should be < 0
+  }
+
+  "it" should "rank equal if the hands are the same" in {
+    aThreeOfAKind.rank(aThreeOfAKind) should be (0)
+  }
+
+  "it" should "rank higher if three of a kind value is greater" in {
+    val aThreeOfAKind1 = ThreeOfAKind(Seq(Hearts, Diamonds, Clubs).map(Card(_, Five)) ++
+      Seq(Card(Hearts, Seven), Card(Diamonds, Nine))).head
+
+    val aThreeOfAKind2 = ThreeOfAKind(Seq(Hearts, Diamonds, Clubs).map(Card(_, Eight)) ++
+      Seq(Card(Hearts, Seven), Card(Diamonds, Nine))).head
+
+    aThreeOfAKind2.rank(aThreeOfAKind1) should be > 0
+    aThreeOfAKind1.rank(aThreeOfAKind2) should be < 0
+  }
+
+  "it" should "rank equal if three of a kind values are the same" in {
+    val aThreeOfAKind1 = ThreeOfAKind(Seq(Hearts, Diamonds, Clubs).map(Card(_, Five)) ++
+      Seq(Card(Hearts, Seven), Card(Diamonds, Nine))).head
+
+    val aThreeOfAKind2 = ThreeOfAKind(Seq(Hearts, Diamonds, Clubs).map(Card(_, Five)) ++
+      Seq(Card(Hearts, Seven), Card(Diamonds, Eight))).head
+
+    aThreeOfAKind2.rank(aThreeOfAKind1) should be(0)
+    aThreeOfAKind1.rank(aThreeOfAKind2) should be(0)
   }
 }
