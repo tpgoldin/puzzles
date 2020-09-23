@@ -18,6 +18,8 @@ abstract class PokerHand(val handType: PokerHandType, val cards: Seq[Card]) exte
     -1
   }
 
+  def groupByValue() = this.cards.groupBy(_.value)
+
   override def toString: String = cards.toString()
 }
 

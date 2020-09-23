@@ -1,7 +1,7 @@
 package com.tpg.puzzles.two.eight.two
 
-import com.tpg.puzzles.two.eight.two.CardLabel.{Eight, Four, Six, Two}
-import com.tpg.puzzles.two.eight.two.Suit.{Diamonds, Hearts}
+import com.tpg.puzzles.two.eight.two.CardLabel.{Eight, Five, Four, Seven, Six, Three, Two}
+import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts}
 
 class FullHouseSpec extends PokerHandSpec {
 
@@ -52,5 +52,17 @@ class FullHouseSpec extends PokerHandSpec {
 
   "it" should "rank lower than a straight flush hand" in {
     aFullHouse.rank(aStraightFlush) should be < 0
+  }
+
+  "it" should "rank equal when the hand is the same" in {
+    aFullHouse.rank(aFullHouse) should be(0)
+  }
+
+  "it" should "rank higher when ranked by the value of the three card value" in {
+    val aFullHouse1 = FullHouse(Seq(Hearts, Clubs, Diamonds).map(Card(_, Five)) ++ Seq(Clubs, Diamonds).map(Card(_, Six))).head
+    val aFullHouse2 = FullHouse(Seq(Hearts, Clubs, Diamonds).map(Card(_, Seven)) ++ Seq(Clubs, Diamonds).map(Card(_, Three))).head
+
+    aFullHouse2.rank(aFullHouse1) should be > 0
+    aFullHouse1.rank(aFullHouse2) should be < 0
   }
 }
