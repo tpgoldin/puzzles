@@ -2,9 +2,9 @@ package com.tpg.puzzles.one.six.two
 
 import scala.collection.immutable.{SortedMap, TreeMap}
 
-class ProblemSolver(val lines: Seq[String]) {
-  private val grid = new Grid(lines)
-  private val counter = new Counter(grid)
+case class ProblemSolver(lines: Seq[String]) {
+  private val grid = Grid(lines)
+  private val counter = Counter(grid)
   val dims = grid.size
 
   def solve() : SortedMap[Tuple2[Int, Int], AsteriskOrCount] = {
