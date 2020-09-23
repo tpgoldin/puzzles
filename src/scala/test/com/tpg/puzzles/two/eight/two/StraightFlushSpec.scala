@@ -1,6 +1,6 @@
 package com.tpg.puzzles.two.eight.two
 
-import com.tpg.puzzles.two.eight.two.CardLabel.{Five, Four, Nine, Six, Three, Two}
+import com.tpg.puzzles.two.eight.two.CardLabel.{Five, Four, Nine, Seven, Six, Three, Two}
 import com.tpg.puzzles.two.eight.two.Suit.{Diamonds, Hearts}
 
 class StraightFlushSpec extends PokerHandSpec {
@@ -67,8 +67,17 @@ class StraightFlushSpec extends PokerHandSpec {
     aStraightFlush.rank(aFourOfAKind) should be > 0
   }
 
+  "it" should "rank equal to the same hand" in {
+    aStraightFlush.rank(aStraightFlush) should be(0)
+  }
+
   "it" should "rank another straight flush hand of higher rank " +
     "by the value of the highest card in the hand " in {
 
+    val aStraightFlush1 = StraightFlush(Seq(Two, Three, Four, Five, Six).map(Card(Hearts, _))).head
+    val aStraightFlush2 = StraightFlush(Seq(Three, Four, Five, Six, Seven).map(Card(Diamonds, _))).head
+
+    aStraightFlush2.rank(aStraightFlush1) should be > 0
+    aStraightFlush1.rank(aStraightFlush2) should be < 0
   }
 }

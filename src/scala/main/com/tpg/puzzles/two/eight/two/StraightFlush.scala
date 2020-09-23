@@ -5,7 +5,11 @@ import com.tpg.puzzles.two.eight.two.PokerHandType.StraightFlushType
 class StraightFlush private(override val cards: Seq[Card]) extends PokerHand(StraightFlushType, cards.sortBy(_.value)) with Rank {
   override def rank(that: PokerHand): Int = {
     if (this.handType.value > that.handType.value) { return 1 }
-    0
+
+    val left = this.cards.map(_.value).max
+    val right = that.cards.map(_.value).max
+
+    left compareTo right
   }
 }
 
