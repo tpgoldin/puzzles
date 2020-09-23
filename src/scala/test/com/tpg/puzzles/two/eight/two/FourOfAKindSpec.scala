@@ -1,7 +1,7 @@
 package com.tpg.puzzles.two.eight.two
 
-import com.tpg.puzzles.two.eight.two.CardLabel.{Five, Six, Two}
-import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts}
+import com.tpg.puzzles.two.eight.two.CardLabel.{Five, Six, Three, Two}
+import com.tpg.puzzles.two.eight.two.Suit.{Clubs, Diamonds, Hearts, Spades}
 
 class FourOfAKindSpec extends PokerHandSpec {
   "Four of a kind hand" should "consist of five cards" in {
@@ -51,5 +51,18 @@ class FourOfAKindSpec extends PokerHandSpec {
 
   "it" should "rank lower than a straight flush hand" in {
     aFourOfAKind.rank(aStraightFlush) should be < 0
+  }
+
+  "it" should "rank equal when hands are the same" in {
+    aFourOfAKind.rank(aFourOfAKind) should be(0)
+  }
+
+  "it" should "rank higher when value of four of a kind is greater" in {
+    val aFourOfAKind1 = FourOfAKind(Suit.values.map(Card(_, Two)) ++ Seq(Card(Spades, Three))).head
+
+    val aFourOfAKind2 = FourOfAKind(Suit.values.map(Card(_, Six)) ++ Seq(Card(Spades, Three))).head
+
+    aFourOfAKind2.rank(aFourOfAKind1) should be > 0
+    aFourOfAKind1.rank(aFourOfAKind2) should be < 0
   }
 }

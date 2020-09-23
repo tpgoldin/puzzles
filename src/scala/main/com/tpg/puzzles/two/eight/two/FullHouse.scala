@@ -7,8 +7,8 @@ class FullHouse private(override val cards: Seq[Card]) extends PokerHand(FullHou
     if (this.handType.value > that.handType.value) { return 1 }
     if (this.handType.value < that.handType.value) { return -1 }
 
-    val left = this.groupByValue().filter(_._2.size == 3).keys.head
-    val right = that.groupByValue().filter(_._2.size == 3).keys.head
+    val left = this.groupByValue().filter(_._2.size == 3).head._1
+    val right = that.groupByValue().filter(_._2.size == 3).head._1
 
     left compareTo right
   }
