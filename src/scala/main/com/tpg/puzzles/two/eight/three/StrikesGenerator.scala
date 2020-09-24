@@ -1,18 +1,27 @@
 package com.tpg.puzzles.two.eight.three
 
 import com.tpg.puzzles.two.eight.three.Day.{Friday, Saturday}
-import com.tpg.puzzles.two.eight.three.Strikes.NoStrikeDays
+import com.tpg.puzzles.two.eight.three.Strikes.{NoStrikeDays, StrikeDayMap}
 
-case class Strikes(hartalParameter: Int, strikeDays: Map[(Int, Day), Int]) {
-  def normalize() : Map[(Int, Day), Int] = {
+import scala.annotation.tailrec
+
+case class N(value: Int)
+
+case class HartalParameter(value: Int) {
+  def range(n: N) = ((value to n.value) by value) toList
+}
+
+case class Strikes(hartalParameter: HartalParameter, strikeDays: StrikeDayMap) {
+  def normalize() : StrikeDayMap = {
     filterStrikeDays(NoStrikeDays, strikeDays)
   }
 
-  private def filterStrikeDays(noStrikeDays: Seq[Day], strikeDays: Map[(Int, Day), Int]): Map[(Int, Day), Int] = {
+  @tailrec
+  private def filterStrikeDays(noStrikeDays: Seq[Day], strikeDays: StrikeDayMap): StrikeDayMap = {
     val head = noStrikeDays.head
     val tail = noStrikeDays.tail
 
-    val reducedMap = strikeDays.filterNot(_._1._2 == head)
+    val reducedMap = strikeDays.filterNot(_._2 == head)
 
     if (tail.isEmpty) { return reducedMap }
 
@@ -21,16 +30,13 @@ case class Strikes(hartalParameter: Int, strikeDays: Map[(Int, Day), Int]) {
 }
 
 object Strikes {
+  type StrikeDayMap = Map[Int, Day]
+
   val NoStrikeDays = Seq(Friday, Saturday)
 }
 
-case class StrikesGenerator(daysMapping: Map[Int, Day], hartalParameter: Int, n: Int) {
-  def generate(): Strikes = {
-    val range = ((hartalParameter to n) by hartalParameter).toList
+case class StrikesGenerator(daysMapping: Map[Int, Day], hartalParameter: HartalParameter, n: N) {
+  def generate(): Strikes = Strikes(hartalParameter, buildStrikeDays(hartalParameter.range(n)))
 
-    Strikes(hartalParameter, buildStrikeDays(range))
-  }
-
-  private def buildStrikeDays(range: List[Int]): Map[(Int, Day), Int] =
-    range.flatMap(i => daysMapping.find(_._1 == i).map(entry => entry -> 1)).toMap
+  private def buildStrikeDays(range: List[Int]): StrikeDayMap = range.flatMap(i => daysMapping.find(_._1 == i)).toMap
 }
