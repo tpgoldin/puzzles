@@ -4,11 +4,11 @@ import com.tpg.puzzles.two.eight.three.Strikes.StrikeDayMap
 
 import scala.annotation.tailrec
 
-case class DaysMappingGenerator(n: Int) {
+case class DaysMappingGenerator private(n: N) {
   private val days = Day.days
 
   def generate() : StrikeDayMap = {
-    buildDaysMapping((1 to n).toList, 0, Map())
+    buildDaysMapping((1 to n.value).toList, 0, Map())
   }
 
   @tailrec
@@ -22,4 +22,8 @@ case class DaysMappingGenerator(n: Int) {
 
     buildDaysMapping(tail, index + 1, newMap)
   }
+}
+
+object DaysMappingGenerator {
+  def apply(n: Int) : DaysMappingGenerator = new DaysMappingGenerator(N(n))
 }
