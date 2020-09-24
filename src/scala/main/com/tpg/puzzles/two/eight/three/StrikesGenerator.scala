@@ -11,10 +11,18 @@ case class HartalParameter(value: Int) {
   def range(n: N) = ((value to n.value) by value) toList
 }
 
-case class Strikes(hartalParameter: HartalParameter, strikeDays: StrikeDayMap) {
-  def normalize() : StrikeDayMap = {
-    filterStrikeDays(NoStrikeDays, strikeDays)
-  }
+case class Strikes private(hartalParameter: HartalParameter, strikeDays: StrikeDayMap) {
+  def apply(key: Tuple2[Int, Day]) : Option[Tuple2[Int, Day]] = strikeDays.find(_ == key)
+}
+
+object Strikes {
+  type StrikeDay = Tuple2[Int, Day]
+  type StrikeDayMap = Map[Int, Day]
+
+  val NoStrikeDays = Seq(Friday, Saturday)
+
+  def apply(hartalParameter: HartalParameter, strikeDays: StrikeDayMap) : Strikes =
+    new Strikes(hartalParameter, filterStrikeDays(NoStrikeDays, strikeDays))
 
   @tailrec
   private def filterStrikeDays(noStrikeDays: Seq[Day], strikeDays: StrikeDayMap): StrikeDayMap = {
@@ -27,12 +35,6 @@ case class Strikes(hartalParameter: HartalParameter, strikeDays: StrikeDayMap) {
 
     filterStrikeDays(tail, reducedMap)
   }
-}
-
-object Strikes {
-  type StrikeDayMap = Map[Int, Day]
-
-  val NoStrikeDays = Seq(Friday, Saturday)
 }
 
 case class StrikesGenerator(daysMapping: Map[Int, Day], hartalParameter: HartalParameter, n: N) {

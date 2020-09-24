@@ -7,6 +7,6 @@ import org.scalatest.matchers.should
 class StrikesSpec extends AnyFlatSpec with should.Matchers {
   "Strikes" should "not contain no strikes days when normalized" in {
     Strikes(HartalParameter(3), Map(3 -> Tuesday, 6 -> Friday, 9 -> Monday, 12 -> Thursday, 15 -> Sunday, 18 -> Wednesday, 21 -> Saturday))
-      .normalize() should contain theSameElementsAs Seq(3 -> Tuesday, 9 -> Monday, 12 -> Thursday, 15 -> Sunday, 18 -> Wednesday)
+      .strikeDays should contain theSameElementsAs Seq(3 -> Tuesday, 9 -> Monday, 12 -> Thursday, 15 -> Sunday, 18 -> Wednesday)
   }
 }
