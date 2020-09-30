@@ -10,7 +10,7 @@ class HartalsCounterSpec extends AnyFlatSpec with should.Matchers {
     val party2 = Party(Strikes(HartalParameter(4), Map(4 -> Wednesday, 8 -> Sunday, 12 -> Thursday)))
     val party3 = Party(Strikes(HartalParameter(8), Map(8 -> Sunday)))
 
-    val counter = HartalsCounter(DaysMappingGenerator(14), Seq(party1, party2, party3))
+    val counter = HartalsCounter(DaysMappingGenerator(14).generate(), Seq(party1, party2, party3))
     counter.count should be(5)
   }
 }

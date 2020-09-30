@@ -37,8 +37,12 @@ object Strikes {
   }
 }
 
-case class StrikesGenerator(daysMapping: Map[Int, Day], hartalParameter: HartalParameter, n: N) {
+case class StrikesGenerator private(daysMapping: Map[Int, Day], hartalParameter: HartalParameter, n: N) {
   def generate(): Strikes = Strikes(hartalParameter, buildStrikeDays(hartalParameter.range(n)))
 
   private def buildStrikeDays(range: List[Int]): StrikeDayMap = range.flatMap(i => daysMapping.find(_._1 == i)).toMap
+}
+
+object StrikesGenerator {
+  def apply(daysMapping: Map[Int, Day], hartalParameter: HartalParameter, n: N): Strikes = new StrikesGenerator(daysMapping, hartalParameter, n).generate()
 }
